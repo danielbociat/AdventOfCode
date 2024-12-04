@@ -1,7 +1,13 @@
+import os
+
 arr1 = list()
 arr2 = list()
 
-with open("input1.txt") as f:
+script_dir = os.path.dirname(__file__)
+rel_path = "input1.txt"
+abs_file_path = os.path.join(script_dir, rel_path)
+
+with open(abs_file_path) as f:
     for line in f:
         nums = line.split()
         arr1.append(int(nums[0]))

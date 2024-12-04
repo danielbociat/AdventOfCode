@@ -1,4 +1,10 @@
-f = open("input3.txt", 'r')
+import os
+
+script_dir = os.path.dirname(__file__)
+rel_path = "input3.txt"
+abs_file_path = os.path.join(script_dir, rel_path)
+
+f = open(abs_file_path, 'r')
 str = f.read()
 
 res = 0

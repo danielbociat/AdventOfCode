@@ -1,6 +1,12 @@
+import os
+
 total = 0
 
-with open("input2.txt") as f:
+script_dir = os.path.dirname(__file__)
+rel_path = "input2.txt"
+abs_file_path = os.path.join(script_dir, rel_path)
+
+with open(abs_file_path) as f:
     for line in f:
         nums = [int(c) for c in line.split()]
         is_safe = True

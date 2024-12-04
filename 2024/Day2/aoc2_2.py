@@ -1,3 +1,5 @@
+import os
+
 total = 0
 
 def check_safe(nums):
@@ -20,8 +22,11 @@ def check_safe(nums):
     return is_safe
         
 
+script_dir = os.path.dirname(__file__)
+rel_path = "input2.txt"
+abs_file_path = os.path.join(script_dir, rel_path)
 
-with open("input2.txt") as f:
+with open(abs_file_path) as f:
     for line in f:
         nums = [int(c) for c in line.split()]
         
