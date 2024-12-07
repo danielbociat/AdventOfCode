@@ -7,6 +7,9 @@ abs_file_path = os.path.join(script_dir, rel_path)
 sol = 0
 
 def poss(target, curr, i):
+    if curr > target:
+        return False
+
     if i == len(nums):
         return target == curr
 
