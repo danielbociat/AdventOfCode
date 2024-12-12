@@ -1,5 +1,4 @@
 import os
-from collections import defaultdict
 
 script_dir = os.path.dirname(__file__)
 rel_path = "input12.txt"
@@ -83,7 +82,7 @@ for i in range(rows):
                     if pair1 != pair2:
                         consec_edges += isConsecEdge(pair1[0], pair1[1], pair2[0], pair2[1])
 
-            print(mp[i][j], area, perimeter, consec_edges//2)
+            #  print(mp[i][j], area, perimeter, consec_edges//2)
 
             total += area * (perimeter-consec_edges//2)
 
