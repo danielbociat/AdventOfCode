@@ -19,17 +19,17 @@ cols = 101
 
 T = rows*cols
 
-for it in range(T):
+for i in range(T):
     grid = [[' '] * cols for _ in range(rows)]
 
     for robot in robots:
-        fpx = (robot['p'][0] + it * robot['v'][0]) % cols
-        fpy = (robot['p'][1] + it * robot['v'][1])  % rows
-        grid[fpy][fpx] = '#'
+        nx = (robot['p'][0] + i * robot['v'][0]) % cols
+        ny = (robot['p'][1] + i * robot['v'][1]) % rows
+        grid[ny][nx] = '#'
 
-    grid = '\n'.join(''.join(row) for row in grid)
+    grid = '\n'.join(''.join(line) for line in grid)
 
     if '###########' in grid:
         print(grid)
-        print(it)
+        print(i)
         break
