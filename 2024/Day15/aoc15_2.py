@@ -39,9 +39,8 @@ for i in range(sz):
         
     new_mp.append(new_ln.copy())
 
-
-for line in new_mp:
-    print(''.join(line))
+# for line in new_mp:
+#     print(''.join(line))
 
 for i in range(sz):
     for j in range(len(new_mp[0])):
@@ -70,7 +69,7 @@ for inst_line in mp[sz+1:]:
         elif new_mp[rr][cc] in ['[', ']', 'O']:
             Q = deque([(r,c)])
             SEEN = set()
-            ok = True
+            flag = True
             while Q:
                 rr,cc = Q.popleft()
                 if (rr,cc) in SEEN:
@@ -78,20 +77,23 @@ for inst_line in mp[sz+1:]:
                 SEEN.add((rr,cc))
                 rrr,ccc = rr+dr, cc+dc
                 if new_mp[rrr][ccc]=='#':
-                    ok = False
+                    flag = False
                     break
+                
                 if new_mp[rrr][ccc] == 'O':
                     Q.append((rrr,ccc))
-                if new_mp[rrr][ccc]=='[':
+
+                elif new_mp[rrr][ccc]=='[':
                     Q.append((rrr,ccc))
-                    assert new_mp[rrr][ccc+1]==']'
                     Q.append((rrr,ccc+1))
-                if new_mp[rrr][ccc]==']':
+
+                elif new_mp[rrr][ccc]==']':
                     Q.append((rrr,ccc))
-                    assert new_mp[rrr][ccc-1]=='['
                     Q.append((rrr,ccc-1))
-            if not ok:
+
+            if not flag:
                 continue
+
             while len(SEEN) > 0:
                 for rr,cc in sorted(SEEN):
                     rrr,ccc = rr+dr,cc+dc
@@ -103,11 +105,11 @@ for inst_line in mp[sz+1:]:
             r = r+dr
             c = c+dc
 
-ans = 0
+total = 0
 for r in range(R):
     for c in range(C):
         if new_mp[r][c] == '[':
-            ans += 100*r+c
+            total += 100*r+c
 
 
-print(ans)
+print(total)
