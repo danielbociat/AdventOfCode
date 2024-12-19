@@ -12,8 +12,6 @@ patterns = lines[0].split(", ")
 print(patterns)
 
 DP = defaultdict(lambda: -1)
-for pattern in patterns:
-    DP[pattern] = 1
 DP[""] = 1
 
 def minus(word, suffix):
@@ -41,15 +39,23 @@ def solve(word):
         s = minus(word, pattern) 
 
         if s != "":
-            solvable = solvable or solve(s)
+            solvable = solvable + solve(s)
 
     DP[word] = solvable
     return DP[word]
 
+patterns = sorted(patterns, key = lambda x : len(x))
+
+for pattern in patterns:
+    solve(pattern)
+
+    DP[pattern] += 1
+
 total = 0 
 for word in lines[2:]:
     solve(word)
-    if DP[word] == 1:
-        total += 1
+    if DP[word] >= 1:
+        # print("A", word)
+        total += DP[word]
 
 print(total)
